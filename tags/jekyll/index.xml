@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>jekyll on My New Hugo Site</title>
+    <link>http://yqkcn.github.io/tags/jekyll/</link>
+    <description>Recent content in jekyll on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language><atom:link href="http://yqkcn.github.io/tags/jekyll/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>jekyll 安装笔记</title>
+      <link>http://yqkcn.github.io/post/2019-08-12-jekyll/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      
+      <guid>http://yqkcn.github.io/post/2019-08-12-jekyll/</guid>
+      <description>Update:jekyll 安装笔记
+ jekyll 安装笔记  每次服务器推到重来，环境搭建最难受，好记性不如烂笔头，记录下来才是最靠谱的。
+2. 安装   安装 ruby 我是 ubuntu 系统，直接安装 ruby，在后面的步骤中会‘ruby 缺少所有的头文件’的错，所以安装 ruby-dev。
+sudo apt update &amp;amp;&amp;amp; sudo apt install ruby-dev   安装 jekyll gem install jekyll   打包文件 jekyll build --source &amp;lt;source&amp;gt; --destination &amp;lt;destination&amp;gt;   配置 nginx 代理 server { listen 80 default_server; server_name blog.yaoqiankun.cn; root /root/blog; index index.html expires 1d; }   结束 这样便可以通过域名 blog.yaoqiankun.cn 访问博客了。  nginx 配置注意 1.</description>
+    </item>
+    
+  </channel>
+</rss>

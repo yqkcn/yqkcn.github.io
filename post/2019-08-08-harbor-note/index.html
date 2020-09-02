@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.75.0-DEV" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Harbor 部署小笔记 &middot; My New Hugo Site</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://yqkcn.github.io/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://yqkcn.github.io/">Home</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2020. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>Harbor 部署小笔记</h1>
+  <time datetime=0001-01-01T00:00:00Z class="post-date">Mon, Jan 1, 0001</time>
+  <p>Update:最终我终于摸到了 Harbor 的皮毛</p>
+<hr>
+<h2 id="harbor使用和安装指南">Harbor使用和安装指南</h2>
+<h3 id="1-harbor依赖">1. Harbor依赖</h3>
+<p>  Harbor被部署为几个Docker容器，因此Harbor可以部署在任何支持Docker的发行版上。安装Harbor目标主机需要安装python、docker和docker-compose。</p>
+<p><strong>硬件要求</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">资源</th>
+<th align="center">大小</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">CPU</td>
+<td align="center">最少2核</td>
+<td align="center">推荐4核</td>
+</tr>
+<tr>
+<td align="center">内存</td>
+<td align="center">最少4GB</td>
+<td align="center">推荐8GB</td>
+</tr>
+<tr>
+<td align="center">硬盘</td>
+<td align="center">最少40GB</td>
+<td align="center">推荐160GB</td>
+</tr>
+</tbody>
+</table>
+<p><strong>软件要求</strong></p>
+<table>
+<thead>
+<tr>
+<th align="center">软件</th>
+<th align="center">版本</th>
+<th align="center">描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td align="center">Python</td>
+<td align="center">2.7或更高版本</td>
+<td align="center"><a href="https://www.centos.bz/2018/01/%E5%9C%A8centos%E4%B8%8A%E5%AE%89%E8%A3%85python3%E7%9A%84%E4%B8%89%E7%A7%8D%E6%96%B9%E6%B3%95/">Python安装指南</a></td>
+</tr>
+<tr>
+<td align="center">Docker engine</td>
+<td align="center">1.10或更高版本</td>
+<td align="center"><a href="https://docs.docker.com/install/linux/docker-ce/centos/">Docker安装指南</a></td>
+</tr>
+<tr>
+<td align="center">Docker Compose</td>
+<td align="center">1.6.0或更高版本</td>
+<td align="center"><a href="https://docs.docker.com/compose/install/">Docker Compose 安装指南</a></td>
+</tr>
+<tr>
+<td align="center">Openssl</td>
+<td align="center">推荐最新版本</td>
+<td align="center">为Harbor生成证书和密钥</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2-安装">2. 安装</h3>
+<p>  Harbor官方支持在线安装和离线安装两种方式，因为官方网络不稳定，在选安装可能会失败，一般选择离线安装。</p>
+<ul>
+<li><strong>下载安装文件</strong> <!-- raw HTML omitted -->
+<pre><code>wget https://storage.googleapis.com/harbor-releases/release-1.7.0/harbor-offline-installer-v1.7.5.tgz
+</code></pre></li>
+<li><strong>解压</strong> <!-- raw HTML omitted -->
+<pre><code>tar xvf harbor-offline-installer-v1.7.5.tgz
+</code></pre></li>
+<li><strong>配置</strong> <!-- raw HTML omitted -->
+cd到解压后的目录中，存在<code>harbor.cfg</code>文件，此文件为Harbor的配置文件，将<code>hostname</code>修改为主机IP，其余配置选项下一节细述。</li>
+<li><strong>安装</strong>
+运行<code>install.sh</code>文件，将会进行自动安装。<!-- raw HTML omitted --></li>
+</ul>
+<p>  安装完成以后，在浏览器中输入上一步中配置的hostname，默认端口为80，即可进入Harbor登陆界面，默认管理员账号admin，密码Harbor12345 。</p>
+<h3 id="3-配置文件介绍">3. 配置文件介绍</h3>
+<p>  下文列出一些常用的配置，可以根据项目需要更改配置，更多配置信息请访问<a href="https://github.com/goharbor/harbor/blob/master/docs/installation_guide.md">完整配置。</a></p>
+<p><strong>harbor.cfg</strong></p>
+<pre><code># 版本号
+_version=1.7.0
+
+# 主机IP或域名，不可使用localhost或127.0.0.1
+hostname=39.97.185.26
+
+# ui界面访问协议,可设置为http和https，默认http
+ui_url_protocol = http
+
+# 最大复制工作数
+max_job_workers = 10
+
+# 当此属性打开时，准备脚本将为注册表令牌的生成/验证创建私钥和根证书。当密钥和根证书由外部源提供时，将此属性设置为off
+customize_crt = on
+
+# SSL证书和密钥路径，仅当协议设置为https时使用
+ssl_cert = /data/cert/server.crt
+ssl_cert_key = /data/cert/server.key
+
+# 用于在复制策略中加密或解密远程注册表的密码的密钥路径
+secretkey_path = /data
+
+# 日志文件数量
+log_rotate_count = 50
+
+# 日志文件总大小，单位可以为K、M、G、
+log_rotate_size = 200M
+
+# 邮箱设置，Harbor需要这些参数向用户发送重置密码的邮件，
+email_server = smtp.mydomain.com
+email_server_port = 25
+email_identity =
+email_username = sample_admin@mydomain.com
+email_password = abc
+mail_from = admin sample_admin@mydomain.com
+email_ssl = false
+
+# 默认管理员密码，仅在第一次启动时生效
+harbor_admin_password = Harbor12345
+
+# 身份认证类型，默认时db_auth，即凭据存储在数据库，若使用LDAP身份验证请设置为ldap_auth
+auth_mode：db_auth
+
+# 是否开启用户自注册账户，当禁用时，只有管理员可以创建新用户
+self_registration = on
+
+# 令牌服务创建的令牌到期时间，单位为分钟
+token_expiration：30
+
+# 控制用户是否有权限创建项目，设为everyone允许用户创建项目，设置为adminonly只有管理员可以创建用户
+project_creation_restriction = everyone
+
+</code></pre><p>  Harbor默认使用80端口，可以通过修改<code>docker-compose.yml</code>文件修改端口。还需修改<code>harbor.cfg</code>中的<code>hostname</code>配置，在ip后加上端口<code>39.97.185.26:8888</code>。</p>
+<p><strong>docker-compose.yml</strong></p>
+<pre><code class="language-proxy:" data-lang="proxy:">    image: goharbor/nginx-photon:v1.6.0
+    container_name: nginx
+    restart: always
+    volumes:
+      - ./common/config/nginx:/etc/nginx:z
+    ports:
+      - 8888:80  # 将Harbor的80端口映射到主机的8888端口
+      - 443:443
+    depends_on:
+      - postgresql
+      - registry
+      - core
+      - portal
+      - log
+    logging:
+      driver: &quot;syslog&quot;
+      options:  
+        syslog-address: &quot;tcp://127.0.0.1:1514&quot;
+        tag: &quot;proxy&quot;
+</code></pre><h3 id="4-使用介绍">4. 使用介绍</h3>
+<h4 id="41-ui界面访问">4.1 UI界面访问</h4>
+<p>  使用浏览器访问<code>http://39.97.185.25:8888</code>即可进入Harbor登陆界面，默认管理员账号admin，密码Harbor12345，输入账号密码进入UI操作界面。</p>
+<!-- raw HTML omitted -->
+<p>  管理员可以通过UI界面进行创建项目、创建用户、分配用户权限、查看日志等操作，详情请查看<a href="https://github.com/goharbor/harbor/blob/master/docs/user_guide.md">Harbor用户指南</a>。</p>
+<h4 id="42-通过docker上传下载镜像">4.2 通过docker上传\下载镜像</h4>
+<p>  <code>docker login</code>命令默认登录DockerHub服务器，使用<code>docker login 39.97.185.26:8888</code>即可登录Harbor服务器。</p>
+<p>  登录之前还需将Harbor服务器加入到Docker的信任列表中，修改<code>/etc/docker/daemon.json</code>文件，如此文件不存在则创建，加入键值对<code>&quot;insecure-registries&quot;:[&quot;39.97.185.26:8888&quot;]</code>。</p>
+<p>  在终端输入<code>docker login 39.97.185.26:8888</code>命令，根据提示输入用户名和密码，显示<code>login succeed</code>即说明登录成功。</p>
+<p>  通过UI界面创建项目后，即可往项目中上传Docker镜像，假设创建的项目为<code>test</code>,上传之前需要先给镜像打标记，在终端执行命令：</p>
+<p><code>docker tag SOURCE_IMAGE[:TAG] 39.97.185.26/test/IMAGE[:TAG]</code></p>
+<p>  打完标记以后，执行以下命令即可完成上传：</p>
+<p><code>docker push 39.97.185.26/test/IMAGE[:TAG]</code></p>
+<p>  从Harbor拉取镜像执行命令：</p>
+<p><code>docker pull 39.97.185.26/test/IMAGE[:TAG]</code>
+<!-- raw HTML omitted --></p>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

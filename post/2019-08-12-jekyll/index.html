@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.75.0-DEV" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>jekyll 安装笔记 &middot; My New Hugo Site</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://yqkcn.github.io/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://yqkcn.github.io/">Home</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2020. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="post">
+  <h1>jekyll 安装笔记</h1>
+  <time datetime=0001-01-01T00:00:00Z class="post-date">Mon, Jan 1, 0001</time>
+  <p>Update:jekyll 安装笔记</p>
+<hr>
+<h2 id="jekyll-安装笔记">jekyll 安装笔记</h2>
+<p>  每次服务器推到重来，环境搭建最难受，好记性不如烂笔头，记录下来才是最靠谱的。</p>
+<h3 id="2-安装">2. 安装</h3>
+<ul>
+<li>
+<p><strong>安装 ruby</strong> <!-- raw HTML omitted -->
+我是 ubuntu 系统，直接安装 ruby，在后面的步骤中会‘ruby 缺少所有的头文件’的错，所以安装 ruby-dev。</p>
+<pre><code>sudo apt update &amp;&amp; sudo apt install ruby-dev
+</code></pre><!-- raw HTML omitted -->
+</li>
+<li>
+<p><strong>安装 jekyll</strong> <!-- raw HTML omitted --></p>
+<pre><code>gem install jekyll
+</code></pre><!-- raw HTML omitted -->
+</li>
+<li>
+<p><strong>打包文件</strong> <!-- raw HTML omitted --></p>
+<pre><code>jekyll build --source &lt;source&gt; --destination &lt;destination&gt;
+</code></pre><!-- raw HTML omitted -->
+</li>
+<li>
+<p><strong>配置 nginx 代理</strong> <!-- raw HTML omitted --></p>
+<pre><code>server {
+    listen 80 default_server;
+    server_name blog.yaoqiankun.cn;
+    root /root/blog;
+    index index.html
+    expires 1d;
+}
+
+</code></pre><!-- raw HTML omitted -->
+</li>
+<li>
+<p><strong>结束</strong> <!-- raw HTML omitted -->
+这样便可以通过域名 blog.yaoqiankun.cn 访问博客了。<!-- raw HTML omitted --></p>
+</li>
+<li>
+<p><strong>nginx 配置注意</strong> <!-- raw HTML omitted -->
+1.需要确保用户对 nginx 的配置文件是有足够权限的 <code>sudo chmod 755 -R /home</code>。</p>
+</li>
+</ul>
+
+</div>
+
+
+    </main>
+
+    
+      
+    
+  </body>
+</html>

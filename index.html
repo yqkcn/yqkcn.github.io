@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us" lang="en-us">
+<head>
+  <link href="https://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+  <meta name="generator" content="Hugo 0.75.0-DEV" />
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>My New Hugo Site</title>
+  <meta name="description" content="" />
+
+  
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/print.css" media="print">
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/poole.css">
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/syntax.css">
+  <link type="text/css" rel="stylesheet" href="http://yqkcn.github.io/css/hyde.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Abril+Fatface|PT+Sans:400,400i,700">
+
+
+  
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144-precomposed.png">
+  <link rel="shortcut icon" href="/favicon.png">
+
+  
+  <link href="http://yqkcn.github.io/index.xml" rel="alternate" type="application/rss+xml" title="My New Hugo Site" />
+  
+</head>
+
+  <body class=" ">
+  <aside class="sidebar">
+  <div class="container sidebar-sticky">
+    <div class="sidebar-about">
+      <a href="http://yqkcn.github.io/"><h1>My New Hugo Site</h1></a>
+      <p class="lead">
+      An elegant open source and mobile first theme for <a href="http://hugo.spf13.com">hugo</a> made by <a href="http://twitter.com/mdo">@mdo</a>. Originally made for Jekyll.
+      </p>
+    </div>
+
+    <nav>
+      <ul class="sidebar-nav">
+        <li><a href="http://yqkcn.github.io/">Home</a> </li>
+        
+      </ul>
+    </nav>
+
+    <p>&copy; 2020. All rights reserved. </p>
+  </div>
+</aside>
+
+    <main class="content container">
+    <div class="posts">
+<article class="post">
+  <h1 class="post-title">
+    <a href="http://yqkcn.github.io/post/2019-08-08-harbor-note/">Harbor 部署小笔记</a>
+  </h1>
+  <time datetime="0001-01-01T00:00:00Z" class="post-date">Mon, Jan 1, 0001</time>
+  Update:最终我终于摸到了 Harbor 的皮毛
+ Harbor使用和安装指南 1. Harbor依赖  Harbor被部署为几个Docker容器，因此Harbor可以部署在任何支持Docker的发行版上。安装Harbor目标主机需要安装python、docker和docker-compose。
+硬件要求
+   资源 大小 描述     CPU 最少2核 推荐4核   内存 最少4GB 推荐8GB   硬盘 最少40GB 推荐160GB    软件要求
+   软件 版本 描述     Python 2.7或更高版本 Python安装指南   Docker engine 1.10或更高版本 Docker安装指南   Docker Compose 1.6.0或更高版本 Docker Compose 安装指南   Openssl 推荐最新版本 为Harbor生成证书和密钥    2.
+  
+  <div class="read-more-link">
+    <a href="/post/2019-08-08-harbor-note/">Read More…</a>
+  </div>
+  
+</article><article class="post">
+  <h1 class="post-title">
+    <a href="http://yqkcn.github.io/post/2019-08-12-jekyll/">jekyll 安装笔记</a>
+  </h1>
+  <time datetime="0001-01-01T00:00:00Z" class="post-date">Mon, Jan 1, 0001</time>
+  Update:jekyll 安装笔记
+ jekyll 安装笔记  每次服务器推到重来，环境搭建最难受，好记性不如烂笔头，记录下来才是最靠谱的。
+2. 安装   安装 ruby 我是 ubuntu 系统，直接安装 ruby，在后面的步骤中会‘ruby 缺少所有的头文件’的错，所以安装 ruby-dev。
+sudo apt update &amp;&amp; sudo apt install ruby-dev   安装 jekyll gem install jekyll   打包文件 jekyll build --source &lt;source&gt; --destination &lt;destination&gt;   配置 nginx 代理 server { listen 80 default_server; server_name blog.yaoqiankun.cn; root /root/blog; index index.html expires 1d; }   结束 这样便可以通过域名 blog.yaoqiankun.cn 访问博客了。  nginx 配置注意 1.
+  
+  <div class="read-more-link">
+    <a href="/post/2019-08-12-jekyll/">Read More…</a>
+  </div>
+  
+</article><article class="post">
+  <h1 class="post-title">
+    <a href="http://yqkcn.github.io/post/2019-11-26-sentry-docker-note/">Sentry 部署小笔记</a>
+  </h1>
+  <time datetime="0001-01-01T00:00:00Z" class="post-date">Mon, Jan 1, 0001</time>
+  Update:Sentry 部署笔记
+ Sentry 部署笔记 1. Sentry 依赖  使用 docker 部署 Sentry 目标主机需要安装python、docker和docker-compose。
+硬件要求
+   资源 大小 描述     内存 最少2GB 推荐4GB    软件要求
+   软件 版本 描述     Python 2.7或更高版本 Python安装指南   Docker engine 1.10或更高版本 Docker安装指南   Docker Compose 1.6.0或更高版本 Docker Compose 安装指南   Openssl 推荐最新版本 为Harbor生成证书和密钥   Docker image postgres 9.6    Docker image redis 3.
+  
+  <div class="read-more-link">
+    <a href="/post/2019-11-26-sentry-docker-note/">Read More…</a>
+  </div>
+  
+</article>
+</div>
+    </main>
+
+    
+      
+    
+  </body>
+</html>
